@@ -66,8 +66,32 @@ function ProfilePage() {
         <button className="save-button">
           Lưu thay đổi
         </button>
-      </div>
 
+        <div className="content-box password-box">
+          <h3>ĐỔI MẬT KHẨU TÀI KHOẢN</h3>
+
+          <div className="form-group password-input">
+            <label>Mật khẩu hiện tại</label>
+            <input
+              type="password"
+              placeholder="Nhập mật khẩu hiện tại"
+            />
+          </div>
+
+          <div className="form-group password-input">
+            <label>Mật khẩu mới</label>
+            <input
+              type="password"
+              placeholder="Nhập mật khẩu mới"
+            />
+          </div>
+
+          <button className="save-button">
+            Lưu thay đổi
+          </button>
+        </div>  
+        
+      </div>
     </div>
   );
 }
