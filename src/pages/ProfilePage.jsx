@@ -22,10 +22,6 @@ function ProfilePage() {
         </div>
 
         <div className="menu-item">
-          Ví
-        </div>
-
-        <div className="menu-item">
           Voucher
         </div>
 
@@ -66,6 +62,7 @@ function ProfilePage() {
         <button className="save-button">
           Lưu thay đổi
         </button>
+    
 
         <div className="content-box password-box">
           <h3>ĐỔI MẬT KHẨU TÀI KHOẢN</h3>
@@ -89,9 +86,10 @@ function ProfilePage() {
           <button className="save-button">
             Lưu thay đổi
           </button>
-        </div>  
-        
+        </div>
+
       </div>
+
     </div>
   );
 }
