@@ -1,15 +1,8 @@
-* {
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
 .auth-container {
-    min-height: 100vh;
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    background-color: #f8fafc;
-    padding: 15px;
+    padding: 10px 0;
 }
 
 .auth-box {
@@ -321,4 +314,38 @@
     .forgot-box {
         padding: 25px 20px;
     }
+}
+
+.auth-error {
+    margin-bottom: 14px;
+    padding: 10px 12px;
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    color: #b91c1c;
+    font-size: 13px;
+}
+
+.auth-success {
+    margin-bottom: 14px;
+    padding: 10px 12px;
+    background-color: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    border-radius: 8px;
+    color: #047857;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.auth-field-error {
+    margin-top: 6px;
+    color: #dc2626;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.login-button:disabled,
+.register-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
 }
