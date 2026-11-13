@@ -1,0 +1,45 @@
+.success,
+.form-page {
+  max-width: 600px;
+  margin: 40px auto;
+  background: white;
+  padding: 35px;
+  border-radius: 15px;
+}
+
+.success {
+  text-align: center;
+}
+
+.success h1 {
+  margin-bottom: 20px;
+}
+
+.form-page {
+  text-align: left;
+}
+
+.form-page h1 {
+  margin-bottom: 25px;
+}
+
+.form-page form {
+  display: grid;
+  gap: 10px;
+}
+
+.form-page input {
+  padding: 13px;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  margin-bottom: 10px;
+}
+
+.form-page .main-btn {
+  width: fit-content;
+}
+
+.form-message {
+  margin-top: 10px;
+  color: #047857;
+}
