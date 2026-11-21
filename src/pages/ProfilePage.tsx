@@ -7,8 +7,10 @@ import "../assets/profile-page.css";
 function ProfilePage() {
   const { user, updateProfile } = useAuth();
   const [name, setName] = useState(user?.name ?? "");
+  const [email, setEmail] = useState(user?.email ?? "");
   const [phone, setPhone] = useState(user?.phone ?? "");
   const [message, setMessage] = useState("");
+  const [saving, setSaving] = useState(false);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -18,11 +20,25 @@ function ProfilePage() {
       return;
     }
 
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      setMessage("Vui lòng nhập email hợp lệ.");
+      return;
+    }
+
+    if (!/^0\d{9,10}$/.test(phone.trim())) {
+      setMessage("Số điện thoại gồm 10-11 số, bắt đầu bằng 0.");
+      return;
+    }
+
+    setSaving(true);
+
     try {
-      await updateProfile(name.trim(), phone.trim());
+      await updateProfile(name.trim(), email.trim(), phone.trim());
       setMessage("Đã lưu thông tin.");
-    } catch {
-      setMessage("Không thể lưu thông tin. Vui lòng thử lại.");
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Không thể lưu thông tin.");
+    } finally {
+      setSaving(false);
     }
   }
 
@@ -54,18 +70,18 @@ function ProfilePage() {
           <div className="menu-active">♙　Thông tin &amp; Mật khẩu</div>
           <Link to="/orders" className="menu-item">▣　Đơn hàng đã mua</Link>
           <Link to="/refunds" className="menu-item">↶　Yêu cầu hoàn tiền</Link>
-          <div className="menu-item">♧　Kho Voucher của tôi</div>
+          <Link to="/my-vouchers" className="menu-item">♧　Kho Voucher của tôi</Link>
         </div>
         <div className="profile-main">
           <form className="content-box" onSubmit={handleSubmit}>
             <h3>CẬP NHẬT THÔNG TIN CÁ NHÂN</h3>
             <div className="input-row">
               <div className="form-group"><label htmlFor="profile-name">Họ và tên</label><input id="profile-name" type="text" value={name} onChange={(event) => setName(event.target.value)} /></div>
-              <div className="form-group"><label htmlFor="profile-email">Email (Không thể thay đổi)</label><input id="profile-email" type="email" value={user.email} disabled /></div>
+              <div className="form-group"><label htmlFor="profile-email">Email</label><input id="profile-email" type="email" value={email} onChange={(event) => setEmail(event.target.value)} required /></div>
             </div>
             <div className="form-group phone-input"><label htmlFor="profile-phone">Số điện thoại</label><input id="profile-phone" type="text" value={phone} onChange={(event) => setPhone(event.target.value)} /></div>
             {message && <p className="profile-message">{message}</p>}
-            <button className="save-button" type="submit">Lưu thay đổi</button>
+            <button className="save-button" type="submit" disabled={saving}>{saving ? "Đang lưu..." : "Lưu thay đổi"}</button>
           </form>
           <div className="content-box password-box">
             <h3>ĐỔI MẬT KHẨU TÀI KHOẢN</h3>
