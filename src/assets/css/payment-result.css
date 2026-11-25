@@ -1,0 +1,13 @@
+.payment-result-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+@media (max-width: 500px) {
+  .payment-result-actions {
+    align-items: center;
+    flex-direction: column;
+  }
+}
