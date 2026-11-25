@@ -1,14 +1,20 @@
 import "../assets/auth.css";
 import { useState } from "react";
 import type { FormEvent } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import PasswordInput from "../components/PasswordInput";
+import GoogleButton from "../components/GoogleButton";
 
 function Login() {
     const { login } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
 
-    const [email, setEmail] = useState("");
+    const fromState = location.state as { email?: string; notice?: string; from?: string } | null;
+    const notice = fromState?.notice ?? "";
+
+    const [email, setEmail] = useState(fromState?.email ?? "");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [sending, setSending] = useState(false);
@@ -26,7 +32,7 @@ function Login() {
 
         try {
             await login(email, password);
-            navigate("/"); 
+            navigate(fromState?.from ?? "/");
         } catch (err) {
             setError(err instanceof Error ? err.message : "Có lỗi xảy ra");
         } finally {
@@ -50,14 +56,7 @@ function Login() {
                 </div>
 
                 <div className="auth-content">
-                    <button
-                        type="button"
-                        className="auth-google-button"
-                        onClick={() => setError("Đăng nhập bằng Google chưa được hỗ trợ.")}
-                    >
-                        <i className="fab fa-google"></i>
-                        <span>Đăng nhập nhanh bằng Google</span>
-                    </button>
+                    <GoogleButton label="Đăng nhập nhanh bằng Google" onError={setError} />
 
                     <div className="auth-divider">
                         <span></span>
@@ -87,17 +86,10 @@ function Login() {
                                 <Link to="/forgot-password">Quên mật khẩu?</Link>
                             </div>
 
-                            <div className="auth-input-wrapper">
-                                <i className="fas fa-lock auth-input-icon"></i>
-                                <input
-                                    type="password"
-                                    placeholder="••••••••"
-                                    className="auth-input"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                />
-                            </div>
+                            <PasswordInput value={password} onChange={setPassword} />
                         </div>
+
+                        {notice && !error && <p className="auth-success">{notice}</p>}
 
                         {error && <p className="auth-error">{error}</p>}
 
