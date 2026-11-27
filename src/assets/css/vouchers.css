@@ -1,0 +1,105 @@
+.voucher-welcome {
+  margin: -10px 0 20px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.my-vouchers-list {
+  display: grid;
+  gap: 14px;
+}
+
+.my-voucher-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: white;
+  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.04);
+}
+
+.my-voucher-symbol {
+  display: flex;
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: #d1fae5;
+  color: #047857;
+  font-size: 20px;
+}
+
+.my-voucher-info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.my-voucher-info strong {
+  font-size: 16px;
+}
+
+.my-voucher-info span {
+  color: #047857;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.my-voucher-info small {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.my-voucher-action {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.my-voucher-action span {
+  font-size: 12px;
+}
+
+.voucher-available {
+  color: #047857;
+}
+
+.voucher-unavailable {
+  color: #64748b;
+}
+
+.my-voucher-action button {
+  padding: 9px 14px;
+  border: 0;
+  border-radius: 8px;
+  background: #10b981;
+  color: white;
+  font-weight: 700;
+}
+
+.my-voucher-action button:disabled {
+  background: #cbd5e1;
+  color: #64748b;
+  cursor: not-allowed;
+}
+
+@media (max-width: 550px) {
+  .my-voucher-card {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .my-voucher-action {
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 66px;
+  }
+}
