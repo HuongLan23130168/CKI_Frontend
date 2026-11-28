@@ -253,6 +253,11 @@
   background: #16a34a;
 }
 
+.cat-toggle:focus-visible {
+  outline: 2px solid #86efac;
+  outline-offset: 3px;
+}
+
 .cat-toggle i:last-child {
   font-size: 10px;
 }
@@ -335,10 +340,17 @@
   gap: 6px;
   white-space: nowrap;
   padding: 4px 0;
+  transition: color 160ms ease;
 }
 
-.quick-tags a:hover {
+.quick-tags a:hover,
+.quick-tags a.active {
   color: #34d399;
+}
+
+.quick-tags a:focus-visible {
+  outline: 2px solid #34d399;
+  outline-offset: 2px;
 }
 
 .quick-tags a i {
